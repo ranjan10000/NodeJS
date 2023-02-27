@@ -270,4 +270,44 @@ http.createServer(function(req,res)
         res.write(data);
         res.end();
     })
-}).listen(8095); */
+}).listen(8095); 
+
+//Node Js server Side Form Submission
+1.In Node Js Formidable module used for parsing form data,especially file uploads.
+2.so install the formidable module from node package manager.
+   command --> npm install formidable 
+3.type the above command in your command prompt or visual studio code terminal.
+4.for getting user form data we use the formidable.incomingForm() method
+5.include the formidable module to be able to parse the uploaded file once it reaches the server
+6.the path to this directory can be found in the "files" object,passed as the third argument in the parse() methods callback function
+7.form.parse(req,function(err,fields,files))
+  err - it returns error,incase of any error occurs
+  fields - getting the user data from form input fields(name,mail id,phonenumber etc.,)
+  files - when the file is uploaded and parsed,it gets placed on a temporary folder on your computer.
+
+*/
+
+var http = require("http");
+var fs = require("fs");
+var formidable =  require("formidable");
+
+http.createServer(function(req,res){
+    if(req.url == '/'){
+        res.writeHead(200,{'content-Type':'text/html'});
+        res.write('<form action = "Bio Data" method="post" enctype = "multipart/form-data">');
+        res.write('<h1>Bio Data</h1>')
+        res.write('Name<input type="text" name="username"><br>');
+        res.write('DOB<input type="date" name="dob"><br>');
+        res.write('Qualification<input type="text" name="qualification"><br>');
+        res.write('Gmail<input type="gmail" name="gmail"><br>');
+        res.write('PhoneNumber<input type="number" name="pno"><br>');
+        res.write('Upload Your resume<input type="file" name="resume"><br>');
+        res.write('<input type="submit">');
+        res.end();
+    }
+}).listen(8088);
+
+elseif(req.url == '/biodata'){
+
+
+}

@@ -16,14 +16,14 @@ The first argument of thr res.writeHead() method is the status code, 200 means t
 HTTP server that listens to server ports and gives a response back to the client.
 The function passed into the http.createServer() method, will be executed when someone tries to access the computer on port 8080.
 
-
+*/
 var http = require('http');
 
 http.createServer(function(req,res){
     res.writeHead(200,{'content-type':'text/plain'});
     res.write('node.js website');
     res.end('thank u');
-}).listen(8080); */
+}).listen(8080); 
 
 
                                              //Nodejs Filesystem Module
@@ -116,7 +116,7 @@ stats - its an object of fs.Stats type.
 
 fs.stat('demo.txt',function(err,stats))
 
-
+*/
 //-- Asynchronous Method
 
 var fs = require("fs");
@@ -271,7 +271,7 @@ http.createServer(function(req,res)
         res.end();
     })
 }).listen(8095); 
-
+/*
 //Node Js server Side Form Submission
 1.In Node Js Formidable module used for parsing form data,especially file uploads.
 2.so install the formidable module from node package manager.
@@ -306,8 +306,3 @@ http.createServer(function(req,res){
         res.end();
     }
 }).listen(8088);
-
-elseif(req.url == '/biodata'){
-
-
-}

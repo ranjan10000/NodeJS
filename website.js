@@ -17,7 +17,7 @@ HTTP server that listens to server ports and gives a response back to the client
 The function passed into the http.createServer() method, will be executed when someone tries to access the computer on port 8080.
 
 */
-var http = require('http');
+/*var http = require('http');
 
 http.createServer(function(req,res){
     res.writeHead(200,{'content-type':'text/plain'});
@@ -271,8 +271,9 @@ http.createServer(function(req,res)
         res.end();
     })
 }).listen(8095); 
+
+             //Node Js server Side Form Submission
 /*
-//Node Js server Side Form Submission
 1.In Node Js Formidable module used for parsing form data,especially file uploads.
 2.so install the formidable module from node package manager.
    command --> npm install formidable 
@@ -294,7 +295,7 @@ var formidable =  require("formidable");
 http.createServer(function(req,res){
     if(req.url == '/'){
         res.writeHead(200,{'content-Type':'text/html'});
-        res.write('<form action = "Bio Data" method="post" enctype = "multipart/form-data">');
+        res.write('<form action = "biodata" method="post" enctype = "multipart/form-data">');
         res.write('<h1>Bio Data</h1>')
         res.write('Name<input type="text" name="username"><br>');
         res.write('DOB<input type="date" name="dob"><br>');
@@ -305,4 +306,35 @@ http.createServer(function(req,res){
         res.write('<input type="submit">');
         res.end();
     }
+    else if(req.url == '/biodata')
+{
+    var form = new formidable.IncomingForm();
+    form.parse(req,function(err,fields,files)
+    {
+        res.write('<h1> Name'+fields.username+'</h1>');
+        res.write('<h1> Dob'+fields.dob+'</h1>');
+        res.write('<h1> Qualification'+fields.qualification+'</h1>');
+        res.write('<h1> Gmail'+fields.gmail+'</h1>')
+        res.write('<h1> PhoneNumber'+fields.pno+'</h1>');
+
+        var oldpath = files.uploadfile.path;
+        var newpath = 'C:\Users' +files.uploadfile.name;
+
+        fs.rename(oldpath,newpath,function(err)
+        {
+            if(err) throw err;
+            res.write('<h1>Your File Location</h1>');
+            res.write('<h1> Old path :'+oldpath+'</h1>');
+            res.write('<h1> New path :'+newpath+'</h1>');
+            res.write('<h1>Thanks for your interest</h1>');
+           
+        })
+
+    })
+}
+else{
+    res.end('<h1>404 page not found</h1>')
+    
+}
 }).listen(8088);
+
